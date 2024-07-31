@@ -20,10 +20,10 @@ RUN curl --proto '=https' --tlsv1.2 -fsSL https://get.opentofu.org/install-opent
 # Sops
 RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
         echo "Performing actions specific to AMD64"; \
-        curl -LO https://github.com/getsops/sops/releases/download/v3.9.0/sops-v3.9.0.linux.amd64 && mv sops-v3.9.0.linux.amd64 /usr/bin/sops && chmod +x /usr/bin/sops \
+        curl -LO https://github.com/getsops/sops/releases/download/v3.9.0/sops-v3.9.0.linux.amd64 && mv sops-v3.9.0.linux.amd64 /usr/bin/sops && chmod +x /usr/bin/sops; \
     elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
         echo "Performing actions specific to ARM64"; \
-        curl -LO https://github.com/getsops/sops/releases/download/v3.9.0/sops-v3.9.0.linux.arm64 && mv sops-v3.9.0.linux.arm64 /usr/bin/sops && chmod +x /usr/bin/sops \
+        curl -LO https://github.com/getsops/sops/releases/download/v3.9.0/sops-v3.9.0.linux.arm64 && mv sops-v3.9.0.linux.arm64 /usr/bin/sops && chmod +x /usr/bin/sops; \
     else \
         echo "Unknown platform"; \
     fi
