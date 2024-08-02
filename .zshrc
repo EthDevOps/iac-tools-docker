@@ -200,6 +200,7 @@ function create_tag(){
 alias gt-bump="create_tag"
 
 echo "Preparing Teleport SSH..."
+mkdir -p /root/.ssh
 tsh config > /root/.ssh/config
 
 cd /src
