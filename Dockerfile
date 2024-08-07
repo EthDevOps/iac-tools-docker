@@ -4,7 +4,7 @@ RUN apt update && apt install python3-pip python3 pipx git curl zsh dialog jq yq
 COPY locale.gen /etc/locale.gen
 RUN locale-gen
 RUN pipx install --include-deps ansible
-RUN pipx inject ansible pytz pynetbox infisical-python
+RUN pipx inject ansible pytz pynetbox infisical-python netaddr
 
 # Teleport
 RUN curl https://apt.releases.teleport.dev/gpg -o /usr/share/keyrings/teleport-archive-keyring.asc
