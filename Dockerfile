@@ -1,6 +1,6 @@
 FROM debian:12-slim
 ARG TARGETPLATFORM
-RUN apt update && apt install python3-pip python3 pipx git curl zsh dialog jq yq fzf exa neovim locales -y
+RUN apt update && apt install python3-pip python3 pipx git curl zsh dialog jq yq fzf exa neovim locales gettext-base -y
 COPY locale.gen /etc/locale.gen
 RUN locale-gen
 RUN pipx install --include-deps ansible
@@ -27,6 +27,10 @@ RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
     else \
         echo "Unknown platform"; \
     fi
+
+# Helm
+
+RUN curl -fsSL -o /tmp/get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 && chmod +x /tmp/get_helm.sh && /tmp/get_helm.sh
 
 # OhMyZsh
 RUN /bin/zsh -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
