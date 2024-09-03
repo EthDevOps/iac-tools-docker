@@ -43,7 +43,7 @@ DISABLE_AUTO_UPDATE="true"
 #ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="false"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -203,4 +203,7 @@ echo "Preparing Teleport SSH..."
 mkdir -p /root/.ssh
 tsh config > /root/.ssh/config
 
+echo "Preparing pre-commit hooks..."
 cd /src
+pre-commit install
+pre-commit autoupdate
