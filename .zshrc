@@ -113,9 +113,9 @@ alias tohex="printf '%x\n'"
 
 function tf(){
   echo "Running tofu on workspace: $(tofu workspace show).">&2
-  [[ -e .tofu-pre && -x .tofu-pre ]] && echo "Running tofu pre-hook...">&2 && ./.tofu-pre>&2
+  [[ -e .tofu-pre && -x .tofu-pre ]] && echo "Running tofu pre-hook...">&2 && source ./.tofu-pre>&2
   tofu $@
-  [[ -e .tofu-post && -x .tofu-post ]] && echo "Running tofu post-hook...">&2 && ./.tofu-post>&2
+  [[ -e .tofu-post && -x .tofu-post ]] && echo "Running tofu post-hook...">&2 && source ./.tofu-post>&2
 }
 
 alias tfa='tf apply --var-file ./environments/$(tofu workspace show).tfvars'
