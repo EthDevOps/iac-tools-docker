@@ -5,7 +5,7 @@ COPY locale.gen /etc/locale.gen
 RUN locale-gen
 RUN pipx install pre-commit
 RUN pipx install --include-deps ansible
-RUN pipx inject ansible pytz pynetbox infisical-python netaddr infisicalsdk
+RUN pipx inject ansible pytz pynetbox infisical-python netaddr infisicalsdk passlib
 
 # Teleport
 RUN curl https://apt.releases.teleport.dev/gpg -o /usr/share/keyrings/teleport-archive-keyring.asc
