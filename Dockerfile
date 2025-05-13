@@ -10,7 +10,7 @@ RUN pipx inject ansible pytz pynetbox infisical-python netaddr infisicalsdk pass
 # Teleport
 RUN curl https://apt.releases.teleport.dev/gpg -o /usr/share/keyrings/teleport-archive-keyring.asc
 RUN echo "deb [signed-by=/usr/share/keyrings/teleport-archive-keyring.asc] \
-https://apt.releases.teleport.dev/debian buster stable/v16" \
+https://apt.releases.teleport.dev/debian buster stable/v17" \
 | tee /etc/apt/sources.list.d/teleport.list > /dev/null
 RUN apt-get update && apt-get install teleport
 
