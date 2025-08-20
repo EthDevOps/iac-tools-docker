@@ -1,11 +1,11 @@
 FROM debian:12-slim
 ARG TARGETPLATFORM
-RUN apt update && apt install python3-pip python3 pipx git curl zsh dialog jq yq fzf exa neovim locales gettext-base -y
+RUN apt update && apt install python3-pip python3 pipx git curl zsh dialog jq yq fzf exa nano neovim locales gettext-base -y
 COPY locale.gen /etc/locale.gen
 RUN locale-gen
 RUN pipx install pre-commit
 RUN pipx install --include-deps ansible
-RUN pipx inject ansible pytz pynetbox infisical-python netaddr infisicalsdk passlib
+RUN pipx inject ansible pytz pynetbox infisical-python netaddr infisicalsdk passlib mitogen
 
 # Teleport
 RUN curl https://apt.releases.teleport.dev/gpg -o /usr/share/keyrings/teleport-archive-keyring.asc
