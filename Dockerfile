@@ -1,6 +1,6 @@
-FROM debian:12-slim
+FROM debian:13-slim
 ARG TARGETPLATFORM
-RUN apt update && apt install python3-pip python3 pipx git curl zsh dialog jq yq fzf exa nano neovim locales gettext-base -y
+RUN apt update && apt install python3-pip python3 pipx git curl zsh dialog jq yq fzf exa nano neovim locales gettext-base apt-transport-https ca-certificates curl gnupg -y
 COPY locale.gen /etc/locale.gen
 RUN locale-gen
 RUN pipx install pre-commit
@@ -20,14 +20,14 @@ RUN curl --proto '=https' --tlsv1.2 -fsSL https://get.opentofu.org/install-opent
 
 # Sops
 RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
-        echo "Performing actions specific to AMD64"; \
-        curl -LO https://github.com/getsops/sops/releases/download/v3.9.0/sops-v3.9.0.linux.amd64 && mv sops-v3.9.0.linux.amd64 /usr/bin/sops && chmod +x /usr/bin/sops; \
-    elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
-        echo "Performing actions specific to ARM64"; \
-        curl -LO https://github.com/getsops/sops/releases/download/v3.9.0/sops-v3.9.0.linux.arm64 && mv sops-v3.9.0.linux.arm64 /usr/bin/sops && chmod +x /usr/bin/sops; \
-    else \
-        echo "Unknown platform"; \
-    fi
+    echo "Performing actions specific to AMD64"; \
+    curl -LO https://github.com/getsops/sops/releases/download/v3.9.0/sops-v3.9.0.linux.amd64 && mv sops-v3.9.0.linux.amd64 /usr/bin/sops && chmod +x /usr/bin/sops; \
+elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
+    echo "Performing actions specific to ARM64"; \
+    curl -LO https://github.com/getsops/sops/releases/download/v3.9.0/sops-v3.9.0.linux.arm64 && mv sops-v3.9.0.linux.arm64 /usr/bin/sops && chmod +x /usr/bin/sops; \
+else \
+    echo "Unknown platform"; \
+fi
 
 # Helm
 
