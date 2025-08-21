@@ -22,7 +22,9 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: 
+      - self-hosted-ghr
+      - size-m-x64
     permissions:
       contents: read
       packages: write
