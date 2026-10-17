@@ -5,7 +5,7 @@ COPY locale.gen /etc/locale.gen
 RUN locale-gen
 RUN pipx install pre-commit
 RUN pipx install --include-deps ansible
-RUN pipx inject ansible pytz pynetbox netaddr infisicalsdk passlib mitogen hvac 
+RUN pipx inject ansible pytz pynetbox netaddr infisicalsdk passlib mitogen hvac scp paramiko 
 
 # Teleport
 RUN curl https://apt.releases.teleport.dev/gpg -o /usr/share/keyrings/teleport-archive-keyring.asc
@@ -32,10 +32,10 @@ fi
 # OpenBao
 RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
     echo "Performing actions specific to AMD64"; \
-    curl -fsSLo /tmp/openbao.tar.gz https://github.com/openbao/openbao/releases/download/v2.6.2/openbao_2.6.2_linux_amd64.tar.gz && tar -xzf /tmp/openbao.tar.gz -C /usr/bin bao && ln -s /usr/bin/bao /usr/bin/openbao && rm /tmp/openbao.tar.gz; \
+    curl -fsSLo /tmp/openbao.tar.gz https://github.com/openbao/openbao/releases/download/v2.7.1/openbao_2.7.1_linux_amd64.tar.gz && tar -xzf /tmp/openbao.tar.gz -C /usr/bin bao && ln -s /usr/bin/bao /usr/bin/openbao && rm /tmp/openbao.tar.gz; \
 elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
     echo "Performing actions specific to ARM64"; \
-    curl -fsSLo /tmp/openbao.tar.gz https://github.com/openbao/openbao/releases/download/v2.6.2/openbao_2.6.2_linux_arm64.tar.gz && tar -xzf /tmp/openbao.tar.gz -C /usr/bin bao && ln -s /usr/bin/bao /usr/bin/openbao && rm /tmp/openbao.tar.gz; \
+    curl -fsSLo /tmp/openbao.tar.gz https://github.com/openbao/openbao/releases/download/v2.7.1/openbao_2.7.1_linux_arm64.tar.gz && tar -xzf /tmp/openbao.tar.gz -C /usr/bin bao && ln -s /usr/bin/bao /usr/bin/openbao && rm /tmp/openbao.tar.gz; \
 else \
     echo "Unknown platform" && exit 1; \
 fi
